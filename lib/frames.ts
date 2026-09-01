@@ -1,6 +1,8 @@
 export const FRAME_COUNT = 300;
 
-export const FRAME_BASE_PATH = "/video_frames";
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+export const FRAME_BASE_PATH = `${BASE_PATH}/video_frames`;
 
 const pad = (index: number): string => String(index).padStart(3, "0");
 
