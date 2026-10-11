@@ -14,7 +14,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden px-6 pb-24 sm:px-10"
+      className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden px-5 pb-20 pt-24 sm:px-10 sm:pb-24"
     >
       {/* Ambient glow fields */}
       <motion.div
@@ -34,13 +34,13 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.8, ease: EASE }}
-          className="mb-6 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[10px] tracking-[0.32em] text-cyan-100/50"
+          className="mb-5 flex flex-wrap items-center gap-x-4 gap-y-1.5 font-mono text-[9px] tracking-[0.22em] text-cyan-100/50 sm:mb-6 sm:gap-x-6 sm:gap-y-2 sm:text-[10px] sm:tracking-[0.32em]"
         >
           <span className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 animate-led-blink rounded-full bg-matrix shadow-[0_0_8px_#00FF66]" />
             BUILD 04.20.26
           </span>
-          <span>// BIOMECHANICAL NEURAL INTERFACE</span>
+          <span className="hidden sm:inline">// BIOMECHANICAL NEURAL INTERFACE</span>
           <span className="hidden text-neural sm:inline">// VESSEL CLASS: NC-SV1</span>
         </motion.div>
 
@@ -48,7 +48,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 40, filter: "blur(12px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ delay: 0.35, duration: 1.1, ease: EASE }}
-          className="max-w-5xl font-display text-[13vw] font-extrabold uppercase leading-[0.9] tracking-tighter text-white sm:text-[9vw] lg:text-[7.5rem]"
+          className="max-w-5xl font-display text-[12.5vw] font-extrabold uppercase leading-[0.92] tracking-tighter text-white [text-wrap:balance] sm:text-[9vw] sm:leading-[0.9] lg:text-[7.5rem]"
         >
           THE ARCHITECTURE
           <br />
@@ -61,7 +61,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 1 }}
-          className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
+          className="mt-8 flex flex-col gap-6 sm:mt-10 sm:flex-row sm:items-end sm:justify-between"
         >
           <p className="max-w-md font-sans text-sm leading-relaxed text-cyan-100/60">
             A millimeter-precision cybernetic chassis engineered for full
@@ -71,10 +71,13 @@ export default function Hero() {
 
           <a
             href="#sequence"
-            className="group inline-flex items-center gap-3 font-mono text-[11px] tracking-[0.32em] text-cyber"
+            className="group inline-flex items-center gap-3 font-mono text-[10px] tracking-[0.24em] text-cyber sm:text-[11px] sm:tracking-[0.32em]"
           >
-            <span className="animate-pulse-glow border border-cyber/30 bg-cyber/5 px-3 py-2">
-              [ SCROLL TO EXPAND SCHEMATICS ↓ ]
+            <span className="animate-pulse-glow border border-cyber/30 bg-cyber/5 px-3 py-2.5 sm:py-2">
+              <span className="sm:hidden">[ SCROLL TO EXPAND ↓ ]</span>
+              <span className="hidden sm:inline">
+                [ SCROLL TO EXPAND SCHEMATICS ↓ ]
+              </span>
             </span>
             <span className="hidden h-px w-10 bg-cyber/40 transition-all group-hover:w-16 sm:block" />
           </a>

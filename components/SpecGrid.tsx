@@ -64,7 +64,7 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 export default function SpecGrid() {
   return (
-    <section id="specs" className="relative px-6 py-28 sm:px-10 sm:py-36">
+    <section id="specs" className="relative px-5 py-24 sm:px-10 sm:py-36">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyber/40 to-transparent" />
 
       <div className="mx-auto max-w-6xl">
@@ -80,7 +80,7 @@ export default function SpecGrid() {
               <span className="h-1.5 w-1.5 animate-led-blink rounded-full bg-matrix shadow-[0_0_8px_#00FF66]" />
               SPECIFICATION // VESSEL CORE
             </div>
-            <h2 className="font-display text-4xl font-extrabold uppercase tracking-tighter text-white sm:text-6xl">
+            <h2 className="font-display text-[2rem] font-extrabold uppercase tracking-tighter text-white sm:text-6xl">
               ENGINEERED TO
               <span className="text-cyber"> EXCEED</span>
             </h2>
@@ -100,7 +100,7 @@ export default function SpecGrid() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.7, delay: i * 0.07, ease: EASE }}
               style={{ borderColor: `${spec.accent}22` }}
-              className={`group relative overflow-hidden rounded-lg border bg-white/[0.03] p-6 backdrop-blur-sm transition-colors duration-500 hover:bg-white/[0.05] ${spec.span}`}
+              className={`group relative overflow-hidden rounded-lg border bg-white/[0.03] p-5 backdrop-blur-sm transition-colors duration-500 hover:bg-white/[0.05] sm:p-6 ${spec.span}`}
             >
               <div
                 className="absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-30"

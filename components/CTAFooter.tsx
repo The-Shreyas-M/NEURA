@@ -17,7 +17,7 @@ export default function CTAFooter() {
   const reserveRef = useRef<HTMLAnchorElement>(null);
 
   return (
-    <footer id="reserve" className="relative overflow-hidden px-6 pb-10 pt-28 sm:px-10 sm:pt-40">
+    <footer id="reserve" className="pb-safe relative overflow-hidden px-5 pt-24 sm:px-10 sm:pt-40">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyber/40 to-transparent" />
 
       {/* Terminal grid floor */}
@@ -74,15 +74,15 @@ export default function CTAFooter() {
             </div>
             <div className="divide-y divide-white/5 font-mono text-[10px] tracking-[0.22em]">
               {TERMINAL_LINES.map((line) => (
-                <div key={line.k} className="flex justify-between px-4 py-3">
-                  <span className="text-cyber/60">{line.k}</span>
-                  <span className="text-cyan-100/70">{line.v}</span>
+                <div key={line.k} className="flex justify-between gap-3 px-4 py-3">
+                  <span className="shrink-0 text-cyber/60">{line.k}</span>
+                  <span className="text-right text-cyan-100/70">{line.v}</span>
                 </div>
               ))}
-              <div className="flex justify-between px-4 py-3">
-                <span className="text-cyber/60">STATUS</span>
+              <div className="flex justify-between gap-3 px-4 py-3">
+                <span className="shrink-0 text-cyber/60">STATUS</span>
                 <span
-                  className={reserved ? "text-matrix" : "text-cyan-100/70"}
+                  className={`text-right ${reserved ? "text-matrix" : "text-cyan-100/70"}`}
                 >
                   {reserved ? "RESERVED ✓" : "AWAITING INPUT"}
                 </span>
@@ -96,7 +96,7 @@ export default function CTAFooter() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
-            className="flex flex-col items-center justify-center gap-8 rounded-lg border border-white/10 bg-white/[0.03] p-8 backdrop-blur-md"
+            className="flex flex-col items-center justify-center gap-6 rounded-lg border border-white/10 bg-white/[0.03] p-6 backdrop-blur-md sm:gap-8 sm:p-8"
           >
             <p className="max-w-sm text-center font-sans text-sm leading-relaxed text-cyan-100/55">
               Field units are fabricated in single batches of 200. Confirming

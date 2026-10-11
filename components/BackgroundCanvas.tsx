@@ -84,9 +84,16 @@ export default function BackgroundCanvas({
     let dpr = 1;
 
     const resize = () => {
+      const nextW = window.innerWidth;
+      const nextH = window.innerHeight;
+
+      // Ignore mobile URL-bar show/hide (height-only small jitter) to avoid
+      // reallocating the canvas backing store on every scroll.
+      if (width && nextW === width && Math.abs(nextH - height) < 140) return;
+
       dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = window.innerWidth;
-      height = window.innerHeight;
+      width = nextW;
+      height = nextH;
       canvas.width = Math.max(1, Math.round(width * dpr));
       canvas.height = Math.max(1, Math.round(height * dpr));
     };

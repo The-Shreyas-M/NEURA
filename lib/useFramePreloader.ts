@@ -3,6 +3,17 @@ import { FRAME_COUNT, buildFrameList } from "@/lib/frames";
 
 export const CONCURRENCY = 6;
 
+function concurrencyForViewport(): number {
+  if (typeof window === "undefined") return CONCURRENCY;
+  const mobile = window.matchMedia("(max-width: 768px)").matches;
+  const saveData =
+    typeof navigator !== "undefined" &&
+    (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
+      ?.saveData === true;
+  if (saveData) return 2;
+  return mobile ? 4 : CONCURRENCY;
+}
+
 export interface PreloadState {
   loaded: number;
   total: number;
@@ -42,6 +53,7 @@ export function useFramePreloader(): UseFramePreloaderReturn {
 
   useEffect(() => {
     const total = slots.current.length;
+    const concurrency = concurrencyForViewport();
     let cursor = 0;
     let loaded = 0;
     let disposed = false;
@@ -57,7 +69,7 @@ export function useFramePreloader(): UseFramePreloaderReturn {
     };
 
     const pump = () => {
-      while (cursor < total && cursor - loaded < CONCURRENCY) {
+      while (cursor < total && cursor - loaded < concurrency) {
         const slot = cursor;
         cursor += 1;
         loadImage(frameList.current[slot].url)

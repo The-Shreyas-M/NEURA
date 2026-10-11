@@ -114,8 +114,8 @@ export default function ScrollHUD({ frames }: ScrollHUDProps) {
       <Corner className="bottom-3 left-3 border-b border-l" />
       <Corner className="bottom-3 right-3 border-b border-r" />
 
-      {/* Top-left status */}
-      <div className="absolute left-4 top-16 flex max-w-[220px] flex-col gap-2 sm:left-6">
+      {/* Top-left status (desktop only — bottom telemetry covers mobile) */}
+      <div className="absolute left-6 top-16 hidden max-w-[220px] flex-col gap-2 md:flex">
         <Chip>
           <StatusDot color="#00FF66" />
           STATUS: SYNAPSE LINKED
@@ -127,7 +127,7 @@ export default function ScrollHUD({ frames }: ScrollHUDProps) {
       </div>
 
       {/* Bottom-left telemetry */}
-      <div className="absolute bottom-6 left-4 grid grid-cols-[auto_auto] gap-x-6 gap-y-1 font-mono text-[10px] leading-relaxed tracking-[0.28em] text-cyan-100/60 sm:left-6">
+      <div className="absolute bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-4 grid grid-cols-[auto_auto] gap-x-5 gap-y-1 font-mono text-[9px] leading-relaxed tracking-[0.24em] text-cyan-100/60 sm:left-6 sm:gap-x-6 sm:text-[10px] sm:tracking-[0.28em]">
         <span className="text-cyber/50">FRAME</span>
         <span ref={(el) => { refs.current.frame = el; }}>000</span>
         <span className="text-cyber/50">SCRUB</span>
@@ -136,8 +136,8 @@ export default function ScrollHUD({ frames }: ScrollHUDProps) {
         <span ref={(el) => { refs.current.sync = el; }}>SYNCING</span>
       </div>
 
-      {/* Right scrub rail */}
-      <div className="absolute bottom-24 right-4 top-28 flex flex-col items-center gap-3 sm:right-6">
+      {/* Right scrub rail (desktop only) */}
+      <div className="absolute bottom-24 right-6 top-28 hidden flex-col items-center gap-3 sm:flex">
         <span className="font-mono text-[9px] tracking-[0.3em] text-cyber/50 [writing-mode:vertical-lr]">
           SCRUB PROGRESS
         </span>
@@ -150,7 +150,7 @@ export default function ScrollHUD({ frames }: ScrollHUDProps) {
       </div>
 
       {/* Phase card (top-center) */}
-      <div className="absolute left-1/2 top-16 -translate-x-1/2 px-4">
+      <div className="absolute left-1/2 top-[4.75rem] w-full max-w-xl -translate-x-1/2 px-4 sm:top-16">
         <AnimatePresence mode="wait">
           {activePhase ? (
             <motion.div
@@ -159,37 +159,37 @@ export default function ScrollHUD({ frames }: ScrollHUDProps) {
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               exit={{ opacity: 0, y: -18, filter: "blur(8px)" }}
               transition={{ duration: 0.45, ease: EASE }}
-              className="w-full max-w-xl rounded-lg border border-white/10 bg-black/45 px-5 py-4 backdrop-blur-md"
+              className="w-full rounded-lg border border-white/10 bg-black/45 px-4 py-3.5 backdrop-blur-md sm:px-5 sm:py-4"
             >
-              <div className="mb-2 flex items-center justify-between">
+              <div className="mb-2 flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-[10px] tracking-[0.4em] text-cyber">
+                  <span className="font-mono text-[9px] tracking-[0.3em] text-cyber sm:text-[10px] sm:tracking-[0.4em]">
                     {activePhase.code}
                   </span>
-                  <span className="h-px w-8 bg-cyber/40" />
+                  <span className="h-px w-6 bg-cyber/40 sm:w-8" />
                 </div>
                 <div className="flex items-center gap-1.5">
                   {PHASES.map((ph) => (
                     <span
                       key={ph.id}
-                      className={`h-1 w-5 rounded-full transition-colors duration-500 ${
+                      className={`h-1 w-4 rounded-full transition-colors duration-500 sm:w-5 ${
                         activePhase.id === ph.id ? "bg-cyber" : "bg-white/15"
                       }`}
                     />
                   ))}
                 </div>
               </div>
-              <h3 className="font-display text-lg font-extrabold uppercase tracking-tighter text-white sm:text-2xl">
+              <h3 className="font-display text-base font-extrabold uppercase leading-tight tracking-tighter text-white sm:text-2xl">
                 {activePhase.title}
               </h3>
               <p className="mt-1 hidden max-w-md font-mono text-[10px] leading-relaxed tracking-[0.2em] text-cyan-100/60 sm:block sm:text-[11px]">
                 {activePhase.sub}
               </p>
-              <div className="mt-3 flex flex-wrap gap-2 border-t border-white/10 pt-3">
+              <div className="mt-3 flex flex-wrap gap-1.5 border-t border-white/10 pt-3 sm:gap-2">
                 {activePhase.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-sm border border-matrix/20 bg-matrix/5 px-2 py-1 font-mono text-[9px] tracking-[0.2em] text-matrix/80"
+                    className="rounded-sm border border-matrix/20 bg-matrix/5 px-2 py-1 font-mono text-[8px] tracking-[0.16em] text-matrix/80 sm:text-[9px] sm:tracking-[0.2em]"
                   >
                     {tag}
                   </span>
