@@ -96,6 +96,12 @@ export default function BackgroundCanvas({
       height = nextH;
       canvas.width = Math.max(1, Math.round(width * dpr));
       canvas.height = Math.max(1, Math.round(height * dpr));
+      // A <canvas> is a replaced element: `inset-0` alone does NOT stretch it —
+      // the browser falls back to its intrinsic (backing-store) size, which on
+      // high-DPR phones is 2-3x the viewport, pushing the centered frame off the
+      // right edge. Pin the CSS box 1:1 to the drawing coordinates.
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
     };
 
     const resizeObserver = new ResizeObserver(resize);
